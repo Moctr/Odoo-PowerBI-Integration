@@ -11,6 +11,12 @@ This project integrates **Power BI** with **Odoo**, a popular open-source ERP, t
 - Dynamic report visuals with customizable filters.
 - Automated updates to procurement reports using Power BI.
 
+### Procurement Dashboard
+
+- ![Procurement Dashboard](https://github.com/Moctr/Odoo-PowerBI-Integration/blob/main/Odoo_Page1.JPG)
+
+### Vendor Dashboard
+
 ---
 
 ## Table of Contents
