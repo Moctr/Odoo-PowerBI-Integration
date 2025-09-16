@@ -253,6 +253,8 @@ in
     PurchaseOrders
 
 
+![Model Function](https://github.com/Moctr/Odoo-PowerBI-Integration/blob/main/Power%20query_Module.JPG)
+
 
 
 
