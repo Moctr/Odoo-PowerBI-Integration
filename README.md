@@ -389,3 +389,67 @@ DIVIDE ( [Total Invoiced], COUNTROWS ( 'account_move' ) )
 
 ```
 
+## Maintenance and Administration
+
+To ensure the reliability of the Power BI – Odoo integration and reporting dashboards, the following maintenance and administration practices should be applied:
+
+### Data Refresh
+- Schedule automatic refreshes in the Power BI Service (daily, weekly, or hourly depending on business needs).  
+- Verify database credentials and gateway connectivity regularly.  
+- If a refresh fails, check the **Manage Gateway** settings and database permissions.  
+
+### Database Maintenance
+- Monitor the Odoo PostgreSQL database size and optimize indexes for faster queries.  
+- Archive old transactional data if reporting does not require it (improves performance).  
+- Apply Odoo module updates carefully and validate that schema changes are reflected in Power Query.  
+
+### Security & Access Control
+- Manage access to reports via **Power BI workspaces and roles**.  
+- Limit exposure of sensitive financial data to authorized managers only.  
+- Use row-level security (RLS) if certain users should only see data for their business unit or hotel.  
+
+### Administration Tasks
+- Document all Power Query transformations and DAX measures.  
+- Update report visuals when new KPIs or Odoo modules are introduced.  
+- Maintain a change log for model updates, schema changes, and measure modifications.  
+
+### Troubleshooting
+- **REF errors in drop-down lists**: open **Data → Manage Workbook Links** in Excel or Power BI Desktop and update the data source reference.  
+- **Refresh errors**: confirm the Odoo database connection is live and credentials are still valid.  
+- **Performance issues**: move complex transformations to SQL views or staged tables in PostgreSQL.  
+
+---
+## Recommendations
+
+Based on the implementation of this project, the following recommendations are suggested to maximize the value of the Odoo–Power BI integration:
+
+1. **Automate Refreshes**  
+   - Configure scheduled refresh in the Power BI Service for near real-time reporting.  
+   - Use incremental refresh for large transactional tables (e.g., invoices, stock moves) to improve performance.  
+
+2. **Enhance Data Quality**  
+   - Ensure consistent use of categories, subcategories, and product codes in Odoo.  
+   - Regularly audit supplier and customer master data to avoid duplicates.  
+   - Validate financial entries to prevent misclassification of expenses.  
+
+3. **Expand Reporting Scope**  
+   - Add HR, Projects, or CRM modules for cross-functional insights.  
+   - Incorporate budget vs. actual analysis across all business units.  
+   - Enable predictive analytics (e.g., forecast sales, procurement lead times).  
+
+4. **Improve User Adoption**  
+   - Provide user training for managers and staff on navigating dashboards.  
+   - Use slicers, bookmarks, and drill-through features to improve interactivity.  
+   - Develop role-based dashboards (procurement, finance, operations).  
+
+5. **Strengthen Governance & Security**  
+   - Implement Row-Level Security (RLS) to restrict sensitive data by user role.  
+   - Track changes to DAX measures and Power Query transformations with version control.  
+   - Establish a governance team for approving new KPIs and dashboard changes.  
+
+6. **Continuous Improvement**  
+   - Gather feedback from users regularly to refine visuals and KPIs.  
+   - Monitor performance metrics in Power BI and optimize queries when necessary.  
+   - Plan for yearly reviews of the data model
+
+
