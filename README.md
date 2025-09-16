@@ -16,7 +16,7 @@ This project integrates **Power BI** with **Odoo**, a popular open-source ERP, t
 - ![Procurement Dashboard](https://github.com/Moctr/Odoo-PowerBI-Integration/blob/main/Odoo_Page1.JPG)
 
 ### Vendor Dashboard
-
+![Vendor](https://github.com/Moctr/Odoo-PowerBI-Integration/blob/main/Odoo_P2.JPG)
 ---
 
 ## Table of Contents
