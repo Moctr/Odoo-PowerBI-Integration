@@ -225,4 +225,35 @@ The following diagram illustrates the overall entity relationships:
 
 
 
+## Power Query
+
+Power Query is used in this project to extract and transform Odoo data from PostgreSQL before loading it into the Power BI data model. This ensures that tables are clean, relationships are well-defined, and KPIs can be calculated efficiently.
+
+### Dynamic Model Loader Function
+
+A reusable Power Query function called **`model`** has been implemented.  
+- When a user provides the **Odoo model name** (e.g., `purchase_order`, `sale_order`, `account_move`),  
+- The function automatically connects to the PostgreSQL database and loads the corresponding table into Power BI.  
+
+This reduces manual effort and ensures consistent loading of Odoo models.
+
+#### Example Usage
+
+```powerquery
+let
+    // Load purchase orders
+    PurchaseOrders = model("purchase_order"),
+
+    // Load suppliers
+    Partners = model("res_partner"),
+
+    // Load invoices
+    Invoices = model("account_move")
+in
+    PurchaseOrders
+
+
+
+
+
 
