@@ -21,14 +21,15 @@ This project integrates **Power BI** with **Odoo**, a popular open-source ERP, t
 
 ## Table of Contents
 
-1. [Description](#Description)
-2. [Prerequisites](#prerequisites)
-3. [Configuration](#Configuration)
-4. [Data Model](#Data Model)
-5. [Power Queryl](#Power Query)
-6. [Power BI Report Features](#power-bi-report-features)
-7. [Contributing](#contributing)
-8. [License](#license)
+1. [Description](#description)  
+2. [Prerequisites](#prerequisites)  
+3. [Configuration](#configuration)  
+4. [Data Flow Diagram](#data-flow-diagram)  
+5. [Data Model](#data-model)  
+6. [Power Query](#power-query)  
+7. [Measures Used](#measures-used)  
+8. [Maintenance and Administration](#maintenance-and-administration)  
+9. [Recommendations](#recommendations) 
 
 ---
 ## Description
