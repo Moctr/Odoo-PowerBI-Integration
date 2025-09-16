@@ -15,7 +15,7 @@ This project integrates **Power BI** with **Odoo**, a popular open-source ERP, t
 
 ## Table of Contents
 
-1. [Installation](#installation)
+1. [Description](#Description)
 2. [Prerequisites](#prerequisites)
 3. [Configuration](#configuration)
 4. [Usage](#usage)
@@ -25,11 +25,20 @@ This project integrates **Power BI** with **Odoo**, a popular open-source ERP, t
 8. [License](#license)
 
 ---
+## Description
 
-## Installation
+This project emphasizes the integration of **Power BI** with the **Odoo database** to provide advanced business intelligence and reporting capabilities. The connection is configured to extract and analyze data from the following core Odoo modules and their models:
 
-To install and use this integration:
+- **Sales Module**  
+  - `sale.order` – Stores sales orders and quotations.  
+  - `sale.order.line` – Stores sales order line items.  
 
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/yourusername/Power-BI-Odoo-Integration.git
+- **Purchase Module**  
+  - `purchase.order` – Stores purchase orders.  
+  - `purchase.order.line` – Stores purchase order line items.  
+
+- **Invoices / Accounting Module**  
+  - `account.move` – Stores invoices and bills.  
+  - `account.move.line` – Stores invoice and bill line items.  
+
+By leveraging Power BI’s dynamic dashboards, organizations can visualize Odoo data in real time, gain deeper insights into operational performance, and support data-driven decision-making.
