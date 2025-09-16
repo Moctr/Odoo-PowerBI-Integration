@@ -220,7 +220,7 @@ The data model for this project is built around the core Odoo modules and their 
 
 The following diagram illustrates the overall entity relationships:  
 
-![Odoo Power BI Data Model](data_model.png)
+![Odoo Power BI Data Model](https://github.com/Moctr/Odoo-PowerBI-Integration/blob/main/Data_Model_Odoo.JPG)
 
 
 
