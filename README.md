@@ -27,18 +27,35 @@ This project integrates **Power BI** with **Odoo**, a popular open-source ERP, t
 ---
 ## Description
 
-This project emphasizes the integration of **Power BI** with the **Odoo database** to provide advanced business intelligence and reporting capabilities. The connection is configured to extract and analyze data from the following core Odoo modules and their models:
+This project integrates **Power BI** with the **Odoo database** to provide advanced procurement, sales, inventory, and financial reporting. The integration is built on direct connections to Odoo’s PostgreSQL models, enabling real-time analysis across multiple business processes.
 
-- **Sales Module**  
-  - `sale.order` – Stores sales orders and quotations.  
-  - `sale.order.line` – Stores sales order line items.  
+The following Odoo modules and models are included:
 
 - **Purchase Module**  
-  - `purchase.order` – Stores purchase orders.  
-  - `purchase.order.line` – Stores purchase order line items.  
+  - `purchase.order` – Purchase orders header information.  
+  - `purchase.order.line` – Purchase order line details.  
 
-- **Invoices / Accounting Module**  
-  - `account.move` – Stores invoices and bills.  
-  - `account.move.line` – Stores invoice and bill line items.  
+- **Sales Module**  
+  - `sale.order` – Sales orders and quotations.  
+  - `sale.order.line` – Sales order line details.  
 
-By leveraging Power BI’s dynamic dashboards, organizations can visualize Odoo data in real time, gain deeper insights into operational performance, and support data-driven decision-making.
+- **Invoicing / Accounting Module**  
+  - `account.move` – Invoices and vendor bills.  
+  - `account.move.line` – Invoice line details.  
+  - `invoicing` (custom view) – Residual and total amounts.  
+
+- **Products & Categories**  
+  - `product.product` – Product records.  
+  - `product.template` – Product templates with attributes.  
+  - `product.category` – Product categorization.  
+
+- **Vendors / Partners**  
+  - `res.partner` – Supplier and customer information.  
+
+- **Inventory / Stock Module**  
+  - `stock.picking` – Stock transfers and deliveries.  
+  - `stock.move` – Stock movements.  
+  - `stock.quant` – Current inventory quantities.  
+  - `stock.location` – Warehouse and storage locations.  
+
+This structure ensures that procurement reports are not limited to purchase orders alone, but also include **supplier performance, product-level analysis, stock movements, and invoice tracking**, providing a holistic view of operations in one Power BI dashboard.
