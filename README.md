@@ -239,23 +239,147 @@ This reduces manual effort and ensures consistent loading of Odoo models.
 
 #### Example Usage
 
-```powerquery
-let
-    // Load purchase orders
-    PurchaseOrders = model("purchase_order"),
-
-    // Load suppliers
-    Partners = model("res_partner"),
-
-    // Load invoices
-    Invoices = model("account_move")
-in
-    PurchaseOrders
-
-
+### Model Function
 ![Model Function](https://github.com/Moctr/Odoo-PowerBI-Integration/blob/main/Power%20query_Module.JPG)
 
 
 
 
+Transformations Applied
+
+Rename columns (IDs → meaningful names, e.g., partner_id → Vendor ID).
+
+Filter states (exclude cancelled or draft records).
+
+Merge queries (e.g., purchase orders with partners and products).
+
+Add calculated columns:
+
+OrderYear = Date.Year([Order Date])
+
+OrderMonth = Date.Month([Order Date])
+
+Date Dimension created in Power Query to enable YOY, QOQ, and time-series analysis.
+
+
+
+## Measures Used
+
+The following DAX measures are implemented in Power BI to calculate KPIs across Procurement, Sales, Invoicing, and Inventory. These measures enable advanced reporting, trend analysis, and decision-making.
+
+---
+
+###  Procurement Measures
+
+```dax
+Total Purchase Value =
+SUM ( 'purchase_order_line'[price_total] )
+
+Average Procurement Lead Time =
+AVERAGEX (
+    'purchase_order',
+    DATEDIFF ( 'purchase_order'[date_order], 'purchase_order'[date_approve], DAY )
+)
+
+Total PO Count =
+COUNTROWS ( 'purchase_order' )
+
+Confirmed Purchase Orders =
+CALCULATE (
+    COUNTROWS ( 'purchase_order' ),
+    'purchase_order'[state] = "purchase"
+)
+
+Supplier On-Time Delivery % =
+DIVIDE (
+    CALCULATE ( COUNTROWS ( 'stock_picking' ), 'stock_picking'[state] = "done" ),
+    CALCULATE ( COUNTROWS ( 'stock_picking' ), 'stock_picking'[scheduled_date] <= 'stock_picking'[date_done] )
+)
+```
+### Sales Measures
+
+```dax
+Total Sales =
+SUM ( 'sale_order_line'[price_total] )
+
+Sales Order Count =
+COUNTROWS ( 'sale_order' )
+
+Open Quotations =
+CALCULATE ( COUNTROWS ( 'sale_order' ), 'sale_order'[state] = "draft" )
+
+Confirmed Sales Orders =
+CALCULATE ( COUNTROWS ( 'sale_order' ), 'sale_order'[state] = "sale" )
+
+Sales Growth % =
+DIVIDE (
+    [Total Sales] - CALCULATE ( [Total Sales], DATEADD ( 'Date'[Date], -1, YEAR ) ),
+    CALCULATE ( [Total Sales], DATEADD ( 'Date'[Date], -1, YEAR ) )
+)
+
+```
+### Invoicing & Finance Measures
+```dax
+Total Invoiced =
+SUM ( 'account_move_line'[price_total] )
+
+Total Paid =
+CALCULATE (
+    SUM ( 'account_move'[amount_total] ),
+    'account_move'[payment_state] = "paid"
+)
+
+Outstanding Amount =
+SUMX (
+    FILTER ( 'account_move', 'account_move'[payment_state] <> "paid" ),
+    'account_move'[amount_residual]
+)
+
+Collection Rate =
+DIVIDE ( [Total Paid], [Total Invoiced] )
+
+Overdue Invoices =
+CALCULATE (
+    COUNTROWS ( 'account_move' ),
+    'account_move'[invoice_date_due] < TODAY(),
+    'account_move'[payment_state] <> "paid"
+)
+```
+### Time Intelligence Measures
+```dax
+YOY Sales =
+CALCULATE ( [Total Sales], DATEADD ( 'Date'[Date], -1, YEAR ) )
+
+YOY Purchase Value =
+CALCULATE ( [Total Purchase Value], DATEADD ( 'Date'[Date], -1, YEAR ) )
+
+QOQ Purchase Value =
+CALCULATE ( [Total Purchase Value], DATEADD ( 'Date'[Date], -1, QUARTER ) )
+
+MOY Invoices =
+CALCULATE ( [Total Invoiced], DATEADD ( 'Date'[Date], -1, MONTH ) )
+
+MTD Sales =
+CALCULATE ( [Total Sales], DATESMTD ( 'Date'[Date] ) )
+
+YTD Sales =
+CALCULATE ( [Total Sales], DATESYTD ( 'Date'[Date] ) )
+
+```
+
+### Supporting Measures
+```dax
+Total Vendors = DISTINCTCOUNT ( 'res_partner'[id] )
+
+Total Customers = DISTINCTCOUNT ( 'res_partner'[id_customer] )
+
+Total Products = DISTINCTCOUNT ( 'product_product'[id] )
+
+Average Order Value =
+DIVIDE ( [Total Sales], [Sales Order Count] )
+
+Average Invoice Value =
+DIVIDE ( [Total Invoiced], COUNTROWS ( 'account_move' ) )
+
+```
 
